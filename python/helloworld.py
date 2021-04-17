@@ -2,8 +2,9 @@
 
 # The classic Hello World.
 
-def main():
-    print("Hello World!")
+def main(name):
+    print(f"Hello {name}!")
 
 if __name__ == "__main__":
-    main()
+    name = input("Your name: ")
+    main(name)
