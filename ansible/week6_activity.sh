@@ -45,7 +45,10 @@ ssh-keygen -q -t ed25519 -f ansible -N "" -C ""     # Generate one for ansible o
 # ssh-agent bash      # Start up ssh-agent. It should be up already if using a DM
 ssh-add ./ansible     # Add key to ssh-agent
 SSH_PUBLIC_KEY=$(cat ansible.pub)      # Load SSH public key to env var
-ansible -i inventory.txt linux -m authorized_key -a "key=$SSH_PUBLIC_KEY" -k   # Upload key via Ansible
+
+# ansible -i inventory.txt linux -m authorized_key -a "key=$SSH_PUBLIC_KEY" -k   # Upload key via Ansible
+ansible -i inventory.txt linux -m file -a "mode=600 dest=/home/justincase/.ssh/authorized_keys state=touch" -k      # Create an empty file for storing ssh keys that only justincase can read and modify
+ansible -i inventory.txt linux -a "echo $SSH_PUBLIC_KEY >> /home/justincase/.ssh/authorized_keys" -k                # Write the ssh key with command module
 
 # Login again to see if password needed
 ansible -i inventory.txt linux -m ping 
