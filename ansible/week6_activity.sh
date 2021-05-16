@@ -1,13 +1,7 @@
 #!/bin/env bash
 
-# Check root https://askubuntu.com/a/30157
-if ! [ $(id -u) = 0 ]; then
-    echo "This script must run under root!"
-    exit 1
-fi
-
 # Apt update and install Ansible
-apt-get -q update && apt-get -qy install ansible sshpass
+sudo apt-get -q update && sudo apt-get -qy install ansible sshpass
 
 # Write inventory.txt https://linuxize.com/post/bash-write-to-file/#writing-to-a-file-using-redirection-operators
 cat << EOF > inventory.txt
