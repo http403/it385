@@ -42,9 +42,9 @@ ansible -i inventory.txt linux -m ping -k
 # Upgrade to use SSH public key and save me the headache of typing password
 echo SSH Public Key!!!
 ssh-keygen -q -t ed25519 -f ansible -N "" -C ""     # Generate one for ansible only
-ssh-agent bash      # Start up ssh-agent
-ssh-add ./ansible   # Add key to ssh-agent
-SSH_PUBLIC_KEY=$(<cat ansible.pub)      # Load SSH public key to env var
+# ssh-agent bash      # Start up ssh-agent. It should be up already if using a DM
+ssh-add ./ansible     # Add key to ssh-agent
+SSH_PUBLIC_KEY=$(cat ansible.pub)      # Load SSH public key to env var
 ansible -i inventory.txt linux -m authorized_key -a "key=$SSH_PUBLIC_KEY" -k   # Upload key via Ansible
 
 # Login again to see if password needed
