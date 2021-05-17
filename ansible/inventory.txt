@@ -8,6 +8,7 @@ db2     ansible_host=192.168.0.122
 
 [all:vars]
 ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+ansible_become_password=Password01
 
 [csr]
 csr1
