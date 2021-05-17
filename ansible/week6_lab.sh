@@ -9,7 +9,7 @@ create_user () {
 
 # Install package
 install_pkg () {
-    eval "$BASE_CMD $1 -m apt -a 'name=$2 state=present udate_cache=yes'"
+    eval "$BASE_CMD $1 -m apt -a 'name=$2 state=present update_cache=yes'"
 }
 
 # Enable auto startup
