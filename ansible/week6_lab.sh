@@ -4,7 +4,7 @@ BASE_CMD='ansible -i inventory.txt -b'
 
 # Create user
 create_user () {
-    eval "$BASE_CMD $1 -m user -a 'name=$2 password=SecurePass01'"
+    eval "$BASE_CMD $1 -m user -a 'name=$2 password=\$6\$RnOc8Sj/FjVSPDES\$AoPM5p7PB.bLVsoDS5dBzZEG5zzK5yzLJqIeVpBaymRMMs0rI6paSgydFn.HOaGaDVoWjXSbbPKN9TsGksUi6.'"
 }
 
 # Install package
