@@ -5,7 +5,7 @@
     become: yes
     user:
       name: user
-      password: {{ 'SecurePass01!' | password_hash('sha512') }}
+      password: "{{ 'SecurePass01!' | password_hash('sha512') }}"
 
 - hosts: web
   tasks:
