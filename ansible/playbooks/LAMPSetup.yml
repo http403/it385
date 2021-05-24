@@ -13,7 +13,7 @@
     host: web
     become: yes
     apt:
-      name: {{ item }}
+      name: "{{ item }}"
       state: present
       update_cache: yes
     loop: [ 'apache2', 'python3-pymysql', 'php', 'php-mysql', 'libapache2-mod-php' ]
