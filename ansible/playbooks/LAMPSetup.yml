@@ -1,0 +1,59 @@
+---
+- hosts: linux
+  tasks:
+  - name: Create user (user/SecurePass01!)
+    become: yes
+    user:
+      name: user
+      password: {{ 'SecurePass01!' | password_hash('sha512') }}
+
+- hosts: web
+  tasks:
+  - name: Install LAMP packages except MySQL
+    host: web
+    become: yes
+    apt:
+      name: {{ item }}
+      state: present
+      update_cache: yes
+    loop: [ 'apache2', 'python3-pymysql', 'php', 'php-mysql', 'libapache2-mod-php' ]
+
+  - name: Start and Enable Apache2
+    become: yes
+    systemd:
+      name: apache2.service
+      state: started
+      enabled: yes
+
+  - name: Open port for public web access
+    become: yes
+    ufw:
+      rule: allow
+      port: 80
+      proto: tcp
+    notify:
+      - restart-firewall
+    
+  handlers:
+    - name: restart-firewall
+      become: yes
+      ufw:
+        state: reloaded
+
+- hosts: db
+  tasks:
+  - name: Install MySQL
+    become: yes
+    apt:
+      name: mysql-server
+      state: present
+      update_cache: yes
+
+  - name: Start and Enable MySQL
+    become: yes
+    systemd:
+      name: mysql.service
+      state: started
+      enabled: yes
+
+    
