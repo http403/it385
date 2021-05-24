@@ -1,0 +1,53 @@
+---
+- hosts: linux
+  tasks:
+  - name: Delete user (user)
+    become: yes
+    user:
+      name: user
+      state: absent
+      remove: yes
+
+- hosts: web
+  tasks:
+  - name: Close port for public web access
+    become: yes
+    ufw:
+      rule: deny
+      port: 80
+      proto: tcp
+    notify:
+      - restart-firewall
+
+  - name: Stop Apache2 service
+    become: yes
+    systemd:
+      name: apache2.service
+      state: stopped
+
+  - name: Remove LAMP packages except MySQL
+    become: yes
+    apt:
+      name: "{{ item }}"
+      state: absent
+    loop: [ 'apache2', 'python3-pymysql', 'php', 'php-mysql', 'libapache2-mod-php' ]
+    
+  handlers:
+    - name: restart-firewall
+      become: yes
+      ufw:
+        state: reloaded
+
+- hosts: db
+  tasks:
+  - name: Stop MySQL service
+    become: yes
+    systemd:
+      name: mysql.service
+      state: stopped
+
+  - name: Remove MySQL
+    become: yes
+    apt:
+      name: mysql-server
+      state: absent
