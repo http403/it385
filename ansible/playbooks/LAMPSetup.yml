@@ -10,7 +10,6 @@
 - hosts: web
   tasks:
   - name: Install LAMP packages except MySQL
-    host: web
     become: yes
     apt:
       name: "{{ item }}"
