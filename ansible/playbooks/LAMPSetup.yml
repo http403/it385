@@ -32,11 +32,29 @@
       proto: tcp
     notify:
       - restart-firewall
+
+  - name: Download site data
+    become: yes
+    git:
+      repo: 'https://github.com/http403/duckfarmdemo'
+      dest: /www/html
+
+  - name: Configure Apache2    
+    template:
+      src: "../templates/apache.conf.j2"
+      dest: "/etc/apache2/site-avaliable/000-default.conf"
+    notify: reload-apache
     
   handlers:
     - name: restart-firewall
       become: yes
       ufw:
+        state: reloaded
+
+    - name: reload-apache
+      become: yes
+      systemd:
+        name: apache2.service
         state: reloaded
 
 - hosts: db
