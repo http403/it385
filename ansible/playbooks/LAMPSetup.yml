@@ -37,7 +37,7 @@
     become: yes
     git:
       repo: 'https://github.com/http403/duckfarmdemo'
-      dest: /var/www
+      dest: /var/www/duckfarmdemo
 
   - name: Configure Apache2
     become: yes
