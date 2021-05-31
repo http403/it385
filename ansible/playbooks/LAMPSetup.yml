@@ -43,7 +43,8 @@
     template:
       src: "../templates/apache.conf.j2"
       dest: "/etc/apache2/site-avaliable/000-default.conf"
-    notify: reload-apache
+    notify: 
+      - reload-apache
     
   handlers:
     - name: restart-firewall
