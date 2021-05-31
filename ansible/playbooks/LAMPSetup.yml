@@ -39,7 +39,8 @@
       repo: 'https://github.com/http403/duckfarmdemo'
       dest: /www/html
 
-  - name: Configure Apache2    
+  - name: Configure Apache2
+    become: yes
     template:
       src: "../templates/apache.conf.j2"
       dest: "/etc/apache2/sites-available/000-default.conf"
