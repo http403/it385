@@ -1,0 +1,31 @@
+---
+- hosts: WindowsServer
+  vars:
+    pass: {{ lookup('password', 'NUL') }}
+  tasks:
+  - name: Create user (hartman/<RANDOM>)
+    become: yes
+    ansible.windows.win_user: 
+      name: hartman
+      password: {{ pass }}
+    notify:
+      - password-update
+
+  - name: Install IIS
+    become: yes
+    ansible.windows.win_feature:
+      name: Web-Server
+
+  - name: Install 7-zip
+    become: yes
+    chocolatey.chocolatey.win_chocolatey:
+      name: 7zip
+
+  - name: Install Windows Updates
+    become: yes
+    ansible.windows.win_updates:
+
+  handlers:
+    - name: password-upate
+      debug:
+        msg: "Passwrod updated to {{ pass }}"
