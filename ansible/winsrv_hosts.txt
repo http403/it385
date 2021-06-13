@@ -1,0 +1,7 @@
+[WindowsServers]
+192.168.1.1     # Not an actual IP address for a Windows Machine
+
+[WindowsServer:var]
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore     # Should not be used in production
+ansible_become_method=runas
