@@ -3,4 +3,4 @@
   tasks:
   - name: Reboot if uptime > 10 mins
     reboot:
-    when: ansible_facts['ansible_uptime_seconds'] >= 600
+    when: ansible_facts['uptime_seconds'] >= 600
