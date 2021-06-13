@@ -1,7 +1,7 @@
 ---
 - hosts: csr
   tasks:
-    - name: Backup iOS config
-      cisco.ios.ios_config:
-        backup: yes
-        
+  - name: Backup iOS config
+    cisco.ios.ios_config:
+      backup: yes
+
