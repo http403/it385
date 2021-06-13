@@ -1,0 +1,6 @@
+---
+- hosts: web
+  tasks:
+  - name: Reboot if uptime > 10 mins
+    reboot:
+    when: ansible_facts['ansible_uptime_seconds'] >= 600
