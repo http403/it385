@@ -1,0 +1,5 @@
+---
+- name: configure community string
+  ios_config:
+    lines:
+      - snmp-server community GRCRocks! RW

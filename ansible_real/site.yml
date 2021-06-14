@@ -1,0 +1,9 @@
+---
+- name: configure CSR devices
+  hosts: csr
+  roles:
+  - config_ios_default_route
+  - config_ios_ntp
+  - config_ios_snmp
+  - config_ios_line
+  - config_ios_backup

@@ -1,0 +1,25 @@
+[all]
+csr1    ansible_host=192.168.0.11
+csr2    ansbile_host=192.168.0.12
+web1    ansible_host=192.168.0.111
+web2    ansible_host=192.168.0.112
+db1     ansible_host=192.168.0.121
+db2     ansible_host=192.168.0.122
+
+[csr]
+csr1
+csr2
+
+[linux]
+web1
+web2
+db1
+db2
+
+[web]
+web1
+web2
+
+[db]
+db1
+db2

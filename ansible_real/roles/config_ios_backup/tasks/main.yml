@@ -1,0 +1,6 @@
+---
+- name: Backup iOS config
+  cisco.ios.ios_config:
+    backup: yes
+    backup_options:
+      filename: "{{ ansible_facts['hostname'] }}_{{ now(utc=True, fmt='%Y-%m-%dT%H:%M:%S%Z') }}.ios"
