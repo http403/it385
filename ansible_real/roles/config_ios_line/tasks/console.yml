@@ -4,4 +4,4 @@
     lines:
     - password GRCCon
     - login
-    partents: line console 0
+    parents: line console 0
