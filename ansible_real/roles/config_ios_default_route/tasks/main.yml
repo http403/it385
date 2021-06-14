@@ -3,7 +3,7 @@
   cisco.ios.ios_static_routes:
     config:
     - address_families:
-      - afi: ipv6
+      - afi: ipv4
         routes:
           - dest: 0.0.0.0/0
             next_hops:
