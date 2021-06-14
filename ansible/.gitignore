@@ -2,4 +2,4 @@
 ansible
 
 # backups made by the CSR script
-*/backups/*
+*/backup/*
