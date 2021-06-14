@@ -1,2 +1,5 @@
 # ansible private SSH key
 ansible
+
+# backups made by the CSR script
+*/backup/*

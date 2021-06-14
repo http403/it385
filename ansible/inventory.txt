@@ -14,6 +14,12 @@ ansible_become_password=Password01
 csr1
 csr2
 
+[csr:vars]
+ansible_connection=ansible.netcommon.network_cli
+ansible_network_os=cisco.ios.ios
+ansible_user=cisco
+ansible_password=cisco
+
 [linux]
 web1
 web2
