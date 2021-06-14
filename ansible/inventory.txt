@@ -14,7 +14,7 @@ ansible_become_password=Password01
 csr1
 csr2
 
-[csr:var]
+[csr:vars]
 ansible_user=cisco
 ansible_password=cisco
 
